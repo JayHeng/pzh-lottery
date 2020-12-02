@@ -32,6 +32,7 @@ class lotteryMain(QMainWindow, Ui_MainWindow):
         # Select xlsx file
         self.srcXlsx, dummyType = QtWidgets.QFileDialog.getOpenFileName(self, u"Browse File", os.getcwd(), "All Files(*);;Source Files(*.xlsx)")
         self.lineEdit_srcXlsx.setText(self.srcXlsx)
+        self.lineEdit_srcXlsx.repaint()
 
         # Get people list from xlsx
         wb = openpyxl.load_workbook(self.srcXlsx)
@@ -87,6 +88,7 @@ class lotteryMain(QMainWindow, Ui_MainWindow):
                 while len(strIdx) < len(str(ws.max_row)):
                     strIdx = '0' + strIdx 
                 self.textEdit_luckyPeopleBoard.append(strIdx + " -> " + ws.cell(row=idx, column=3).value + "\r\n")
+                self.textEdit_luckyPeopleBoard.repaint()
                 time.sleep(1)
 
 if __name__ == '__main__':
